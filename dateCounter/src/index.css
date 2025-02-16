@@ -1,0 +1,16 @@
+.step_rapper {
+  display: flex;
+  gap: 25px;
+  margin-top: 25px;
+  justify-content: space-between;
+  width: 500px;
+}
+.step_titr {
+  font-weight: bolder;
+  font-size: larger;
+}
+.form {
+  width: 300px;
+  margin: 0 auto;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
