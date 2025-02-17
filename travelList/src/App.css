@@ -1,0 +1,79 @@
+.Titr_rapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(172, 108, 88);
+  padding: 25px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.Titr {
+  font-weight: bolder;
+  font-size: 45px;
+  color: rgb(88, 18, 18);
+}
+.btn_style {
+  background-color: rgb(37, 126, 129);
+  width: 80px;
+  height: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 15px;
+  line-height: 20px;
+  text-align: center;
+}
+.input_number {
+  width: 50px;
+  border-radius: 15px;
+  outline: none;
+  height: 25px;
+  padding-left: 5px;
+  border: 2px solid rgba(80, 18, 18, 0.589);
+}
+.input_text {
+  outline: none;
+  width: 200px;
+  border-radius: 15px;
+  height: 25px;
+  border: 2px solid rgba(80, 18, 18, 0.589);
+  padding-left: 5px;
+}
+.form {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  background-color: rgb(175, 49, 3);
+  height: 150px;
+  justify-content: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.form_titr {
+  font-weight: bolder;
+  font-size: larger;
+  color: rgb(56, 9, 9);
+}
+.item {
+  display: flex;
+  gap: 10px;
+  height: 25px;
+  align-items: center;
+  width: fit-content;
+}
+.svg {
+  fill: red;
+}
+.itemList {
+  display: flex;
+  padding: 25px;
+  flex-wrap: wrap;
+  gap: 25px;
+  width: 100%;
+  background-color: rgb(133, 64, 64);
+  height: 250px;
+  justify-content: flex-start;
+}
+.textline {
+  text-decoration-line: line-through;
+}
