@@ -77,3 +77,12 @@
 .textline {
   text-decoration-line: line-through;
 }
+.footer {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgb(37, 126, 129);
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}

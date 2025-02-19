@@ -3,17 +3,35 @@ import "./App.css";
 
 function App() {
   const [info, setInfo] = useState([]);
+  const [done, setdo] = useState(0);
+  const donehandeller = function () {
+    setdo(info.filter((i) => i.done).length + 1);
+  };
   const sddItemHandeler = function (item) {
     setInfo((it) => {
       return [...it, item];
     });
+  };
+  const setDone = function (flag, code) {
+    setInfo((prevInfo) =>
+      prevInfo.map((x) => (x.id === code ? { ...x, done: flag } : x))
+    );
+    donehandeller();
+  };
+  const delet = function (id) {
+    setInfo()(info.filter((x) => x.id !== id));
   };
   console.log(info);
   return (
     <>
       <Titr />
       <Form onAddItem={sddItemHandeler} />
-      <Itemrapper ItemInfo={info} />
+      <Itemrapper ItemInfo={info} delethandeller={delet} setDone={setDone} />
+      <Footer
+        nmb={info.length}
+        packnmb={done}
+        percent={(done / info.length) * 100}
+      />
     </>
   );
 }
@@ -178,7 +196,15 @@ const Itemrapper = function (items) {
       <div className="itemList">
         {items
           ? items.ItemInfo.map((it) => {
-              return <Item txt={it.title} key={it.id} />;
+              return (
+                <Item
+                  txt={it.title}
+                  key={it.id}
+                  delethandeller={items.delethandeller}
+                  id={it.id}
+                  setDone={items.setDone}
+                />
+              );
             })
           : ""}
       </div>
@@ -186,17 +212,22 @@ const Itemrapper = function (items) {
   );
 };
 const Item = function (props) {
+  console.log(props);
   const [flag, setflag] = useState(false);
   return (
     <>
       <div className="item">
         <input
-          onChange={() => setflag((prev) => !prev)}
+          onChange={() => {
+            setflag((prev) => !prev);
+            props.setDone(!flag, props.id);
+          }}
           type="checkbox"
           name="check"
         />
         <div className={flag ? "textline" : ""}>{props.txt}</div>
         <svg
+          onClick={() => props.delethandeller(props.id)}
           className="svg"
           fill="#000000"
           version="1.1"
@@ -222,6 +253,16 @@ const Item = function (props) {
             </g>{" "}
           </g>
         </svg>
+      </div>
+    </>
+  );
+};
+const Footer = function (props) {
+  return (
+    <>
+      <div className="footer">
+        you have {props.nmb} items on your list and you already packed{" "}
+        {props.packnmb} ({props.percent}%){" "}
       </div>
     </>
   );
