@@ -7,7 +7,7 @@ function App() {
   const donehandeller = function () {
     setdo(info.filter((i) => i.done).length + 1);
   };
-  const sddItemHandeler = function (item) {
+  const sddItemHandeler = (item) => {
     setInfo((it) => {
       return [...it, item];
     });
@@ -19,7 +19,7 @@ function App() {
     donehandeller();
   };
   const delet = function (id) {
-    setInfo()(info.filter((x) => x.id !== id));
+    setInfo(info.filter((x) => x.id !== id));
   };
   console.log(info);
   return (
