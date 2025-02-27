@@ -30,7 +30,11 @@ function BillSection({ info, setInfo }) {
     setInfo((preinfo) =>
       preinfo.map((data) =>
         data.name == person[0].name
-          ? { ...data, bill: bill - (option == "you" ? you : him) }
+          ? {
+              ...data,
+              bill: bill - (option == "you" ? you : him),
+              color: option == "you" ? "green" : "red",
+            }
           : data
       )
     );

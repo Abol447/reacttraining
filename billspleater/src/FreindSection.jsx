@@ -7,9 +7,11 @@ function FreindSection({ info, infoHandeller, infoWindowHandeller }) {
     <div className="w-[400px] font-sans">
       {info.map((data, index) => (
         <Friends
+          flag={data.flag}
           name={data.name}
           color={data.color}
           key={index}
+          bill={data.bill}
           handeller={infoWindowHandeller}
         />
       ))}
