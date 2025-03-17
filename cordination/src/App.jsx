@@ -2,16 +2,18 @@ import { useRef, useState } from "react";
 
 function App() {
   const [location, setLocation] = useState("");
-  const locRef = useRef(null);
+  const [loc, setLoc] = useState([]);
+  const [load, setload] = useState(false);
   const locationhandeller = function (e) {
     setLocation(e.target.value);
   };
   const api = async function () {
+    setload(true);
     const result = await fetch(
-      `https://nominatim.openstreetmap.org/search?q=?${location}&format=json`
+      `https://nominatim.openstreetmap.org/search?q=${location}&format=json`
     );
-    locRef.current = await result.json();
-    console.log(locRef.current);
+    setLoc(await result.json());
+    setload(false);
   };
   return (
     <div className="flex flex-col w-[200px] p-5 font-mono">
@@ -28,7 +30,9 @@ function App() {
       >
         get my position
       </button>
-      <div>{locRef.current?.map((item) => item.place_id + ",")}</div>
+      <div>
+        {!load ? loc.map((item) => item.place_id + ",") : "is worcking"}
+      </div>
     </div>
   );
 }
