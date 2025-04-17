@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../Input";
 import { useState } from "react";
+import { Api } from "../Api";
 
 export default function Opration() {
   const dispatch = useDispatch();
@@ -25,14 +26,16 @@ export default function Opration() {
           <Input cattegori={"operation"} lable={"Deposit"} id={"deposit"} />
           <div className="flex justify-between w-[70%]">
             <select
-              onChange={(e) =>
-                dispatch({ type: "currency", payload: e.target.value })
-              }
+              onChange={(e) => {
+                dispatch({ type: "currency", payload: e.target.value });
+                dispatch(Api(e.target.value));
+                console.log(info.api);
+              }}
               value={info.currency}
               className="w-[100px] border-2 rounded-xl px-2 py-1 border-gray-500"
             >
               <option value="us doller">us doller</option>
-              <option value="euru">euru</option>
+              <option value="EUR">EUR</option>
             </select>
             <button onClick={handleDeposit} className="buttom w-[100px] ">
               deposit
