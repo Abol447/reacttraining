@@ -5,11 +5,18 @@ import { useQuery } from "@tanstack/react-query";
 import { getCobins } from "../../Data/request/request";
 import Button from "../../Public/Button";
 import AddCobin from "./AddCobin";
+import Modal from "../../Public/modal";
+import TableP from "../../Public/TableP";
+import Loading from "../../Public/Loading";
+import CobinsHeader from "./CobinsHeader";
+import { useFilterCobins } from "../../hooks/useFilterCobins";
+import { useSortCobin } from "../../hooks/useCobinSort";
+import useGetCobin from "../../hooks/useGetCobin";
 export default function Table() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["cobins"],
-    queryFn: getCobins,
-  });
+  let { data, isLoading } = useGetCobin();
+  data = useFilterCobins(data || []);
+  data = useSortCobin(data || []);
+  console.log(data);
   const [update, setUpdate] = useState(0);
   const [defualtValue, setdefualtValue] = useState({});
   const updateHandeller = function (id) {
@@ -17,11 +24,41 @@ export default function Table() {
     setdefualtValue(() => defualt);
     setUpdate((pre) => (pre === id ? 0 : id));
   };
-  const [newcobin, setnewcobin] = useState(false);
+  const Headercontent = [
+    { width: "10%", body: "" },
+    { width: "10%", body: "COBIN" },
+    { width: "20%", body: "CAPACITY" },
+    { width: "15%", body: "PRICE" },
+    { width: "15%", body: "DISCOUNT" },
+    { width: "10%", body: "" },
+  ];
   return (
     <>
-      {" "}
-      <table className=" m-auto mt-5 w-[80%]">
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="space-y-2">
+          <div className="w-[80%] m-auto mt-4">
+            <TableP>
+              <TableP.Header content={Headercontent} />
+              <TableP.body>
+                {data?.map((item) => {
+                  return (
+                    <tr className=" border border-gray-200" key={item.id}>
+                      <TableRow
+                        action={updateHandeller}
+                        cobin={item}
+                        gray={item.id === update ? true : false}
+                      />
+                    </tr>
+                  );
+                })}
+              </TableP.body>
+            </TableP>
+          </div>
+        </div>
+      )}
+      {/* <table className=" m-auto mt-5 w-[80%]">
         <thead>
           <tr className=" bg-gray-300 text-gray-800">
             <TableHeader />
@@ -39,21 +76,26 @@ export default function Table() {
               </tr>
             );
           })}
-
-          <div className="mt-8">
-            <Button
-              content="new cobin"
-              blue={true}
-              action={() => setnewcobin((pre) => !pre)}
-            />
-          </div>
         </tbody>
-      </table>
-      {newcobin ? (
-        <AddCobin />
+      </table> */}
+      <div className="mt-8 flex  justify-center ">
+        <Modal>
+          <Modal.open name={"cobin"}>
+            <button className="btn m-auto w-[100%] text-white bg-blue-800 flex justify-center ">
+              Add cobin
+            </button>
+          </Modal.open>
+          <Modal.Window name={"cobin"}>
+            <Modal.close />
+            <AddCobin />
+          </Modal.Window>
+        </Modal>
+      </div>
+      {/* {newcobin ? (
+        <></>
       ) : update > 0 ? (
         <AddCobin defualtValue={defualtValue} id={update} />
-      ) : null}
+      ) : null} */}
     </>
   );
 }

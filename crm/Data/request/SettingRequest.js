@@ -11,7 +11,6 @@ export const getSetting = async function () {
       },
     }
   );
-  console.log(response);
   return response.data;
 };
 
@@ -28,6 +27,5 @@ export const UpdateSettig = async function (id, value) {
       },
     }
   );
-  console.log(response);
-  return response;
+  return response.data;
 };

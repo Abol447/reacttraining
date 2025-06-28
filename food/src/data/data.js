@@ -11,6 +11,9 @@ export async function order(newOrder) {
       "Content-Type": "application/json",
     },
   });
+  if (!res.ok) {
+    throw new Error('Something went wrong while placing the order.');
+  }
   return await res.json();
 }
 export default async function getorder(id) {

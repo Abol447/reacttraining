@@ -25,7 +25,7 @@ export default function Setting() {
             rest: data,
           });
         })}
-        className="flex flex-col gap-4 shadow w-[800px] m-auto mt-10 px-5 py-10 rounded-2xl shadow-gray-300"
+        className="bg-white flex flex-col gap-4 shadow w-[800px] m-auto mt-10 px-5 py-10 rounded-2xl shadow-gray-300"
       >
         <InputContainer name="Minimum Nights / Booking">
           <input

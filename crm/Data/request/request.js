@@ -1,6 +1,6 @@
 import axios from "axios";
 const url = "https://jruppzeeitolijrgbvyx.supabase.co/storage/v1";
-const apikey =
+export const apikey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpydXBwemVlaXRvbGlqcmdidnl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwOTU4OTMsImV4cCI6MjA2MTY3MTg5M30.ketuojkkbbH6V_l0PnhRF7_Z87sTzb1Tf_Px8KchdTU";
 export const getCobins = async function () {
   const respond = await axios.get(
@@ -45,7 +45,22 @@ export const insertNewRow = async function (data) {
         },
       }
     );
-    console.log(respond.config.data);
+    console.log(respond);
+  } else {
+    const respond = await axios.post(
+      "https://jruppzeeitolijrgbvyx.supabase.co/rest/v1/cobin",
+      data,
+      {
+        headers: {
+          Prefer: "return=minimal",
+          Authorization: `Bearer ${apikey}`,
+          "Content-Type": "application/json",
+          apikey: apikey,
+        },
+      }
+    );
+    console.log(respond);
+    return respond;
   }
 };
 

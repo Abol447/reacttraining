@@ -3,6 +3,10 @@ import Button from "../../Public/Button";
 import { deletCobins } from "../../Data/request/request";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import Modal from "../../Public/modal";
+import AddCobin from "./AddCobin";
+import { useContext } from "react";
+import { MenuContex } from "../../Public/Menu";
 
 export default function TableRow({ cobin, action, gray }) {
   const queryclient = useQueryClient();
@@ -18,8 +22,8 @@ export default function TableRow({ cobin, action, gray }) {
 
   return (
     <>
-      <td className=" Row w-[100px] flex items-center justify-center pl-0">
-        <img className="h-[55px] " src={cobin.image} alt="" />
+      <td className=" Row w-[100px] pl-0">
+        <img className="h-[55px] w-full " src={cobin.image} alt="" />
       </td>
       <td className="Row w-[150px]">{cobin.name}</td>
       <td className="Row w-[250px]">fits up {cobin.maxcapacity} people</td>
@@ -28,7 +32,17 @@ export default function TableRow({ cobin, action, gray }) {
       <td className="Row w-[150px]  ">
         <div className="flex gap-2 items-center justify-center">
           <Button content="DELETE" id={cobin.id} action={mutate} />
-          <Button content="update" action={action} id={cobin.id} gray={gray} />
+          <Modal>
+            <Modal.open>
+              <button className="btn rounded-2xl font-bold text-white bg-blue-800">
+                update
+              </button>
+            </Modal.open>
+            <Modal.Window>
+              <Modal.close />
+              <AddCobin defualtValue={cobin} id={cobin.id} />
+            </Modal.Window>
+          </Modal>
         </div>
       </td>
     </>

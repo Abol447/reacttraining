@@ -2,10 +2,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { insertNewRow } from "../Data/request/request";
 import toast from "react-hot-toast";
 import { getSetting } from "../Data/request/SettingRequest";
+import { useContext } from "react";
+import { ModalContext } from "../Public/modal";
 
 export const useCreatCobin = function (reset) {
+  const { setOpen } = useContext(ModalContext);
   const queryclient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, isSuccess } = useMutation({
     mutationFn: (data) => insertNewRow(data),
     onSuccess: () => {
       toast.success("cobin add");
@@ -13,8 +16,9 @@ export const useCreatCobin = function (reset) {
         queryKey: ["cobins"],
         queryfn: getSetting,
       });
+      setOpen("");
       reset();
     },
   });
-  return { mutate };
+  return { mutate, isSuccess };
 };

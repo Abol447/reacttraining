@@ -9,6 +9,11 @@ import Users from "../pages/Users";
 import Setting from "../featcher/setting/Setting";
 import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import BookingDetals from "../featcher/booking/BookingDetals";
+import CheckedIn from "../featcher/CheckedState/CheckedIn";
+import LogIn from "../pages/LogIn";
+import Auth from "../pages/auth";
+import Profile from "../featcher/users/Profile";
 function App() {
   const queryqlient = new QueryClient();
   return (
@@ -17,13 +22,25 @@ function App() {
         <Toaster position="top-center" />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route
+              path="/"
+              element={
+                <Auth>
+                  <Layout />
+                </Auth>
+              }
+            >
               <Route path="Home" element={<Home />} />
               <Route path="cobins" element={<Cobins />} />
               <Route path="Bookings" element={<Booking />} />
+              <Route path="Bookings/:BookingId" element={<BookingDetals />} />
+              <Route path="CheckedIn/:BookingId" element={<CheckedIn />} />
               <Route path="Users" element={<Users />} />
               <Route path="Setting" element={<Setting />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
+
+            <Route path="login" element={<LogIn />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />

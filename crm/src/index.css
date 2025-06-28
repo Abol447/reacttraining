@@ -8,8 +8,13 @@
   font-weight: bold;
 }
 .Row {
-  padding: 8px 4px 8px 4px;
-  text-align: left;
+  padding: 8px 8px 8px 8px;
+  text-align: center;
+}
+.paginationBtn {
+  border: 2px solid gray;
+  padding: 2px 6px 2px 6px;
+  border-radius: 12px;
 }
 .input {
   border: 1px solid rgb(155, 155, 155);
@@ -20,4 +25,33 @@
 .btn {
   border: 2px solid gray;
   padding: 2px 16px 2px 16px;
+}
+.menuItem {
+  width: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px 4px 8px;
+  font-weight: bold;
+}
+.menuItem:hover {
+  background-color: rgb(218, 216, 216);
+  cursor: pointer;
+}
+.LoginInput {
+  border: 2px gray solid;
+  width: 200px;
+  padding: 2px 8px 2px 8px;
+  border-radius: 12px;
+  outline: none;
+  font-size: small;
+}
+.LoginInput:focus {
+  border-color: blue;
+}
+.error {
+  font-size: 12px;
+  color: red;
 }
