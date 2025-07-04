@@ -11,7 +11,6 @@ export default function useGetBooking() {
     queryFn: getBooking,
     queryKey: ["Booking", query],
   });
-  data = useBookingFilter(data);
-  data = useBookingSort(data);
+  
   return { data, isLoading, isSuccess };
 }

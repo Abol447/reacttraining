@@ -10,6 +10,7 @@ export default function DashboardCart({
   checkedIn,
   rate,
 }) {
+    
   return (
     <div className="flex  w-full gap-10 mt-5">
       <CartInfo

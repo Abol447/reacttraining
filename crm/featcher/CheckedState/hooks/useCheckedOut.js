@@ -18,6 +18,7 @@ export default function useCheckedOut(id) {
         queryKey: ["Booking"],
         queryfn: getBooking,
       });
+      
     },
   });
   return { checkedOut };

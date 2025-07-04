@@ -48,5 +48,6 @@ export function getDateByDays(day) {
 }
 export function getToday() {
   const date = new Date();
+  
   return spliteInputDate(date.toISOString());
 }

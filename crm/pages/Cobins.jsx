@@ -7,7 +7,7 @@ export default function Cobins() {
   const [sortOp, SetSortOp] = useState("Alphabet");
   return (
     <CobinSortCx.Provider value={{ sortOp, SetSortOp }}>
-      <div className="mt-5 space-y-3">
+      <div className="mt-5 ">
         <CobinsHeader>
           <Sort />
         </CobinsHeader>

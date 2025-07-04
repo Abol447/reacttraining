@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useGetParms from "../hooks/useGetParms";
-import { IoBarChartSharp } from "react-icons/io5";
 
 export const FilterContex = createContext();
 export default function Filter({ value, option, children }) {
